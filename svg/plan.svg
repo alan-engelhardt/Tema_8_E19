@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 882 326">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #fff;
+            }
+
+            .cls-2 {
+                fill: red;
+            }
+
+            .cls-3 {
+                fill: #39b54a;
+            }
+
+        </style>
+    </defs>
+    <title>Asset 1</title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="plan">
+            <rect class="cls-1" x="84.5" y="36.5" width="708" height="278" />
+            <path d="M792,37V314H85V37H792m1-1H84V315H793V36Z" />
+            <rect class="cls-1" x="286.5" y="36.5" width="11" height="168" />
+            <path d="M297,37V204H287V37h10m1-1H286V205h12V36Z" />
+            <path d="M801,27V325H72V27H801m1-1H71V326H802V26Z" />
+            <path d="M611,150V314H600V150h11m1-1H599V315h13V149Z" />
+            <path d="M468,150v10H299V150H468m1-1H298v12H469V149Z" />
+        </g>
+        <g id="prikker">
+            <g id="prik4">
+                <circle class="cls-2" cx="177.5" cy="170.5" r="15.5" />
+            </g>
+            <g id="prik3">
+                <circle class="cls-2" cx="501.5" cy="253.5" r="15.5" />
+            </g>
+            <g id="prik2">
+                <circle class="cls-2" cx="365.5" cy="93.5" r="15.5" />
+            </g>
+            <g id="prik1">
+                <circle class="cls-2" cx="703.5" cy="231.5" r="15.5" />
+            </g>
+        </g>
+        <g id="bokse">
+            <rect id="infoboks4" class="cls-3" y="77" width="193" height="72" />
+            <rect id="infoboks3" class="cls-3" x="350" width="193" height="72" />
+            <rect id="infoboks2" class="cls-3" x="324" y="159" width="193" height="72" />
+            <rect id="infoboks1" class="cls-3" x="689" y="138" width="193" height="72" />
+        </g>
+    </g>
+</svg>

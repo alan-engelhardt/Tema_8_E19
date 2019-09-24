@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>T</title>
+    <style>
+        .skjul{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="holder"></div>
+    <script>
+        fetch("svg/plan.svg").then(svg=>svg.text()).then(svg=>holder.innerHTML=svg).then(svg=>run(svg));
+
+        function run(svg){
+            const prikker = holder.querySelector("#prikker");
+            const bokse = holder.querySelectorAll("#bokse rect");
+            console.log(bokse)
+            bokse.forEach(boks=>boks.classList.add("skjul"))
+            prikker.addEventListener("click", visInfo)
+        }
+
+        function visInfo(e){
+            const id = e.target.parentElement.getAttribute("id");
+            console.log(id)
+            if(id=="prik1"){
+                holder.querySelector("#infoboks1").classList.toggle("skjul");
+            }
+        }
+    </script>
+</body>
+</html>

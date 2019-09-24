@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 882 326">
+    <title>plan2</title>
+    <g id="plan">
+        <rect x="84.5" y="36.5" width="708" height="278" fill="#fff" />
+        <path d="M829,106V383H122V106H829m1-1H121V384H830V105Z" transform="translate(-37 -69)" />
+        <rect x="286.5" y="36.5" width="11" height="168" fill="#fff" />
+        <path d="M334,106V273H324V106h10m1-1H323V274h12V105Z" transform="translate(-37 -69)" />
+        <path d="M838,96V394H109V96H838m1-1H108V395H839V95Z" transform="translate(-37 -69)" />
+        <path d="M648,219V383H637V219h11m1-1H636V384h13V218Z" transform="translate(-37 -69)" />
+        <path d="M505,219v10H336V219H505m1-1H335v12H506V218Z" transform="translate(-37 -69)" />
+    </g>
+    <g id="prikker">
+        <g id="prik4">
+            <circle cx="177.5" cy="170.5" r="15.5" fill="red" />
+        </g>
+        <g id="prik3">
+            <circle cx="501.5" cy="253.5" r="15.5" fill="red" />
+        </g>
+        <g id="prik2">
+            <circle cx="365.5" cy="93.5" r="15.5" fill="red" />
+        </g>
+        <g id="prik1">
+            <circle cx="703.5" cy="231.5" r="15.5" fill="red" />
+        </g>
+    </g>
+    <g id="bokse">
+        <rect id="infoboks4" y="77" width="193" height="72" fill="#39b54a" />
+        <rect id="infoboks3" x="350" width="193" height="72" fill="#39b54a" />
+        <rect id="infoboks2" x="324" y="159" width="193" height="72" fill="#39b54a" />
+        <rect id="infoboks1" x="689" y="138" width="193" height="72" fill="#39b54a" />
+    </g>
+</svg>
