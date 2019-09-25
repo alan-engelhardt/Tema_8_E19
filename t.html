@@ -6,48 +6,46 @@
 </head>
 
 <body>
-    <div id="holder"></div>
-    <footer><p>Interaktiv svg</p></footer>
+    <section id="holder"></section>
     <script>
-        let bokse, aktiv, boks;
+        let aktivPrik, aktivBoks;
 
-        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(svg => start(svg));
+        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(start)
 
-        function start(svg) {
-            const prikker = holder.querySelectorAll("#prikker g");
-            bokse = holder.querySelectorAll("#bokse rect");
-            bokse.forEach(boks => boks.style.visibility="hidden")
+        function start() {
+            const prikker = holder.querySelectorAll("#prikker circle")
+            const bokse = holder.querySelectorAll("#bokse rect")
+            bokse.forEach(boks => boks.style.visibility = "hidden")
             prikker.forEach(prik => prik.addEventListener("click", visInfo))
         }
 
         function visInfo() {
-            bokse.forEach(boks => boks.style.visibility="hidden")
-
-            if (aktiv) {
-                aktiv.firstElementChild.setAttribute("fill", "red")
+            if (aktivPrik) {
+                aktivPrik.setAttribute("fill", "red")
+                aktivBoks.style.visibility = "hidden";
             }
 
             if (this.id == "prik1") {
-                boks = holder.querySelector("#infoboks1")
+                aktivBoks = holder.querySelector("#infoboks1")
             }
             if (this.id == "prik2") {
-                boks = holder.querySelector("#infoboks2")
+                aktivBoks = holder.querySelector("#infoboks2")
             }
             if (this.id == "prik3") {
-                boks = holder.querySelector("#infoboks3")
+                aktivBoks = holder.querySelector("#infoboks3")
             }
             if (this.id == "prik4") {
-                boks = holder.querySelector("#infoboks4")
+                aktivBoks = holder.querySelector("#infoboks4")
             }
 
-            if (aktiv == this) {
-                aktiv = 0
-                this.firstElementChild.setAttribute("fill", "red")
-                boks.style.visibility="hidden";
+            if (aktivPrik == this) {
+                aktivPrik.setAttribute("fill", "red")
+                aktivPrik = ""
+                aktivBoks.style.visibility = "hidden";
             } else {
-                aktiv = this
-                aktiv.firstElementChild.setAttribute("fill", "green")
-                boks.style.visibility="visible";
+                aktivPrik = this
+                aktivPrik.setAttribute("fill", "green")
+                aktivBoks.style.visibility = "visible";
             }
         }
     </script>
