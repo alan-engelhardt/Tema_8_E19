@@ -12,22 +12,35 @@
 <body>
     <div id="holder"></div>
     <script>
-        fetch("svg/plan.svg").then(svg=>svg.text()).then(svg=>holder.innerHTML=svg).then(svg=>run(svg));
+        let bokse;
+        fetch("svg/plan2.svg").then(svg=>svg.text()).then(svg=>holder.innerHTML=svg).then(svg=>run(svg));
 
         function run(svg){
-            const prikker = holder.querySelector("#prikker");
-            const bokse = holder.querySelectorAll("#bokse rect");
-            console.log(bokse)
+            const prikker = holder.querySelectorAll("#prikker g");
+            bokse = holder.querySelectorAll("#bokse rect");
             bokse.forEach(boks=>boks.classList.add("skjul"))
-            prikker.addEventListener("click", visInfo)
+            prikker.forEach(prik=>prik.addEventListener("mouseover", visInfo))
+            prikker.forEach(prik=>prik.addEventListener("mouseout", skjulInfo))
         }
 
         function visInfo(e){
-            const id = e.target.parentElement.getAttribute("id");
-            console.log(id)
-            if(id=="prik1"){
+            console.log(this)
+            if(this.id=="prik1"){
                 holder.querySelector("#infoboks1").classList.toggle("skjul");
             }
+            if(this.id=="prik2"){
+                holder.querySelector("#infoboks2").classList.toggle("skjul");
+            }
+            if(this.id=="prik3"){
+                holder.querySelector("#infoboks3").classList.toggle("skjul");
+            }
+            if(this.id=="prik4"){
+                holder.querySelector("#infoboks4").classList.toggle("skjul");
+            }
+        }
+
+        function skjulInfo(){
+            bokse.forEach(boks=>boks.classList.add("skjul"))
         }
     </script>
 </body>

@@ -28,23 +28,23 @@
         </g>
         <g id="prikker">
             <g id="prik4">
-                <circle class="cls-2" cx="177.5" cy="170.5" r="15.5" />
+                <circle class="info-4" cx="177.5" cy="170.5" r="15.5" />
             </g>
             <g id="prik3">
-                <circle class="cls-2" cx="501.5" cy="253.5" r="15.5" />
+                <circle class="info-3" cx="501.5" cy="253.5" r="15.5" />
             </g>
             <g id="prik2">
-                <circle class="cls-2" cx="365.5" cy="93.5" r="15.5" />
+                <circle class="info-2" cx="365.5" cy="93.5" r="15.5" />
             </g>
             <g id="prik1">
-                <circle class="cls-2" cx="703.5" cy="231.5" r="15.5" />
+                <circle class="info-1" cx="703.5" cy="231.5" r="15.5" />
             </g>
         </g>
         <g id="bokse">
-            <rect id="infoboks4" class="cls-3" y="77" width="193" height="72" />
-            <rect id="infoboks3" class="cls-3" x="350" width="193" height="72" />
-            <rect id="infoboks2" class="cls-3" x="324" y="159" width="193" height="72" />
-            <rect id="infoboks1" class="cls-3" x="689" y="138" width="193" height="72" />
+            <rect id="infoboks1" class="info-1" x="689" y="138" width="193" height="72" />
+            <rect id="infoboks2" class="info-2" x="350" width="193" height="72" />
+            <rect id="infoboks3" class="info-3" x="324" y="159" width="193" height="72" />
+            <rect id="infoboks4" class="info-4" y="77" width="193" height="72" />
         </g>
     </g>
 </svg>
