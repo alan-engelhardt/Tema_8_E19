@@ -4,44 +4,57 @@
     <meta charset="UTF-8">
     <title>T</title>
     <style>
-        .skjul{
+        .skjul {
             display: none;
         }
     </style>
 </head>
+
 <body>
     <div id="holder"></div>
     <script>
-        let bokse;
-        fetch("svg/plan2.svg").then(svg=>svg.text()).then(svg=>holder.innerHTML=svg).then(svg=>run(svg));
+        let bokse, aktiv, boks;
+        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(svg => run(svg));
 
-        function run(svg){
+        function run(svg) {
             const prikker = holder.querySelectorAll("#prikker g");
             bokse = holder.querySelectorAll("#bokse rect");
-            bokse.forEach(boks=>boks.classList.add("skjul"))
-            prikker.forEach(prik=>prik.addEventListener("mouseover", visInfo))
-            prikker.forEach(prik=>prik.addEventListener("mouseout", skjulInfo))
+            bokse.forEach(boks => boks.classList.add("skjul"))
+            prikker.forEach(prik => prik.addEventListener("click", visInfo))
         }
 
-        function visInfo(e){
-            console.log(this)
-            if(this.id=="prik1"){
-                holder.querySelector("#infoboks1").classList.toggle("skjul");
-            }
-            if(this.id=="prik2"){
-                holder.querySelector("#infoboks2").classList.toggle("skjul");
-            }
-            if(this.id=="prik3"){
-                holder.querySelector("#infoboks3").classList.toggle("skjul");
-            }
-            if(this.id=="prik4"){
-                holder.querySelector("#infoboks4").classList.toggle("skjul");
-            }
-        }
+        function visInfo() {
+            bokse.forEach(boks => boks.classList.add("skjul"))
 
-        function skjulInfo(){
-            bokse.forEach(boks=>boks.classList.add("skjul"))
+            if (aktiv) {
+                aktiv.firstElementChild.setAttribute("fill", "red")
+            }
+
+            if (this.id == "prik1") {
+                boks = holder.querySelector("#infoboks1")
+                boks.classList.remove("skjul")
+            }
+            if (this.id == "prik2") {
+                boks = holder.querySelector("#infoboks2")
+                boks.classList.remove("skjul");
+            }
+            if (this.id == "prik3") {
+                boks = holder.querySelector("#infoboks3")
+                boks.classList.remove("skjul");
+            }
+            if (this.id == "prik4") {
+                boks = holder.querySelector("#infoboks4")
+                boks.classList.remove("skjul");
+            }
+
+            if (aktiv == this) {
+                aktiv = 0
+                this.firstElementChild.setAttribute("fill", "red")
+                boks.classList.add("skjul")
+            } else {
+                aktiv = this
+                aktiv.firstElementChild.setAttribute("fill", "blue")
+            }
         }
     </script>
-</body>
-</html>
+</body></html>

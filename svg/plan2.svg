@@ -28,9 +28,9 @@
     </g>
   </g>
   <g id="bokse">
-    <rect id="infoboks4" y="77" width="193" height="72" fill="#39b54a"/>
-    <rect id="infoboks2" x="350" width="193" height="72" fill="#39b54a"/>
-    <rect id="infoboks3" x="324" y="159" width="193" height="72" fill="#39b54a"/>
-    <rect id="infoboks1" x="689" y="138" width="193" height="72" fill="#39b54a"/>
+    <rect id="infoboks4" y="77" width="193" height="72" fill="red"/>
+    <rect id="infoboks2" x="350" width="193" height="72" fill="red"/>
+    <rect id="infoboks3" x="324" y="159" width="193" height="72" fill="red"/>
+    <rect id="infoboks1" x="689" y="138" width="193" height="72" fill="red"/>
   </g>
 </svg>
