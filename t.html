@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>T</title>
-    <style>
-        .skjul {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
     <div id="holder"></div>
+    <footer><p>Interaktiv svg</p></footer>
     <script>
         let bokse, aktiv, boks;
-        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(svg => run(svg));
 
-        function run(svg) {
+        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(svg => start(svg));
+
+        function start(svg) {
             const prikker = holder.querySelectorAll("#prikker g");
             bokse = holder.querySelectorAll("#bokse rect");
-            bokse.forEach(boks => boks.classList.add("skjul"))
+            bokse.forEach(boks => boks.style.visibility="hidden")
             prikker.forEach(prik => prik.addEventListener("click", visInfo))
         }
 
         function visInfo() {
-            bokse.forEach(boks => boks.classList.add("skjul"))
+            bokse.forEach(boks => boks.style.visibility="hidden")
 
             if (aktiv) {
                 aktiv.firstElementChild.setAttribute("fill", "red")
@@ -32,28 +29,25 @@
 
             if (this.id == "prik1") {
                 boks = holder.querySelector("#infoboks1")
-                boks.classList.remove("skjul")
             }
             if (this.id == "prik2") {
                 boks = holder.querySelector("#infoboks2")
-                boks.classList.remove("skjul");
             }
             if (this.id == "prik3") {
                 boks = holder.querySelector("#infoboks3")
-                boks.classList.remove("skjul");
             }
             if (this.id == "prik4") {
                 boks = holder.querySelector("#infoboks4")
-                boks.classList.remove("skjul");
             }
 
             if (aktiv == this) {
                 aktiv = 0
                 this.firstElementChild.setAttribute("fill", "red")
-                boks.classList.add("skjul")
+                boks.style.visibility="hidden";
             } else {
                 aktiv = this
-                aktiv.firstElementChild.setAttribute("fill", "blue")
+                aktiv.firstElementChild.setAttribute("fill", "green")
+                boks.style.visibility="visible";
             }
         }
     </script>
