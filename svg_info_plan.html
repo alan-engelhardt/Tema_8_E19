@@ -6,42 +6,50 @@
 </head>
 
 <body>
-    <section id="holder"></section>
+    <section id="beholder"></section>
     <script>
+        // to globale variabler til at holde styr på states
         let aktivPrik, aktivBoks;
 
-        fetch("svg/plan2.svg").then(svg => svg.text()).then(svg => holder.innerHTML = svg).then(start)
+        // hent svg'en ind i DOM elementet "behoilder" og kald start funktionen, når svg'en er på plads
+        fetch("svg/plan.svg").then(svg => svg.text()).then(svg => beholder.innerHTML = svg).then(start)
 
+        // vælg prikker og infobokse i svg'en. Gem boksene og gør prikkerne klikbare
         function start() {
-            const prikker = holder.querySelectorAll("#prikker circle")
-            const bokse = holder.querySelectorAll("#bokse rect")
+            const prikker = beholder.querySelectorAll("#prikker circle")
+            const bokse = beholder.querySelectorAll("#bokse rect")
             bokse.forEach(boks => boks.style.visibility = "hidden")
-            prikker.forEach(prik => prik.addEventListener("click", visInfo))
+            prikker.forEach(prik => prik.addEventListener("click", visInfo)) // kald visInfo ved klik
         }
 
         function visInfo() {
+            // tjek om der er en aktiv prik / åben infoboks, skift farve til rød og luk boksen
             if (aktivPrik) {
                 aktivPrik.setAttribute("fill", "red")
                 aktivBoks.style.visibility = "hidden";
             }
 
+            // tjek hvilken prik der er blevet klikket på, vælg den tilhørende infoboks og sæt den til aktivBoks
             if (this.id == "prik1") {
-                aktivBoks = holder.querySelector("#infoboks1")
+                aktivBoks = beholder.querySelector("#infoboks1")
             }
             if (this.id == "prik2") {
-                aktivBoks = holder.querySelector("#infoboks2")
+                aktivBoks = beholder.querySelector("#infoboks2")
             }
             if (this.id == "prik3") {
-                aktivBoks = holder.querySelector("#infoboks3")
+                aktivBoks = beholder.querySelector("#infoboks3")
             }
             if (this.id == "prik4") {
-                aktivBoks = holder.querySelector("#infoboks4")
+                aktivBoks = beholder.querySelector("#infoboks4")
             }
 
+            // tjek om den prik der er blevet klikket på allerede er aktiv. Hvis den er aktiv, så skift farve til rød, luk boksen og "tøm" aktivPrik variablen
             if (aktivPrik == this) {
                 aktivPrik.setAttribute("fill", "red")
-                aktivPrik = ""
                 aktivBoks.style.visibility = "hidden";
+                aktivPrik = 0
+
+                // ellers gør den til aktivPrik, skift farve til grøn og åden den tilhørende inforboks
             } else {
                 aktivPrik = this
                 aktivPrik.setAttribute("fill", "green")

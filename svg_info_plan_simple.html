@@ -17,27 +17,29 @@
     <script>
         let bokse;
 
-        fetch("svg/plan2.svg").then(svg=>svg.text()).then(svg=>beholder.innerHTML=svg).then(start);
+        fetch("svg/plan.svg").then(svg=>svg.text()).then(svg=>beholder.innerHTML=svg).then(start);
 
         function start(){
             bokse = beholder.querySelectorAll("#bokse rect");
             bokse.forEach(boks=>boks.classList.add("skjul"));
             window.addEventListener("click", visInfo);
+            // ved at gøre EventListener global lukkes alle infobokse, når der klikkes udenfor cirklerne, simpelt og effektivt
         }
 
         function visInfo(e){
             bokse.forEach(boks=>boks.classList.add("skjul"));
-            const prik = e.target;
-            if(prik.id=="prik1"){
+            const clicked = e.target;
+
+            if(clicked.id=="prik1"){
                 beholder.querySelector("#infoboks1").classList.toggle("skjul");
             }
-            if(prik.id=="prik2"){
+            if(clicked.id=="prik2"){
                 beholder.querySelector("#infoboks2").classList.toggle("skjul");
             }
-            if(prik.id=="prik3"){
+            if(clicked.id=="prik3"){
                 beholder.querySelector("#infoboks3").classList.toggle("skjul");
             }
-            if(prik.id=="prik4"){
+            if(clicked.id=="prik4"){
                 beholder.querySelector("#infoboks4").classList.toggle("skjul");
             }
         }
