@@ -8,14 +8,14 @@
             width: 400px;
             fill: none;
             border-radius: 50%;
-            background-color: #eee;
+            background-color: orange;
             transform: rotate(-90deg);
         }
 
         circle {
-            stroke: orange;
+            stroke: #eee;
             stroke-dasharray: 100;
-            stroke-dashoffset: 90;
+            stroke-dashoffset: 10;
             stroke-width: 380;
         }
 
@@ -33,8 +33,8 @@
     <svg viewBox="0 0 400 400">
         <circle id="pie" pathLength="100" cx="200" cy="200" r="190" />
     </svg>
-   <button id="tegnKnap">100%</button>
-   <input id="range" type="range" min="-100" max="0" value="-90">
+   <button id="tegnKnap">Fyld ud</button>
+   <input id="range" type="range" min="0" max="100" value="10">
    <p><span id="display">10</span>%</p>
     <script>
         tegnKnap.addEventListener("click", tegn);
@@ -42,15 +42,15 @@
 
         function tegn() {
             pie.style.transition="1s";
-            pie.style.strokeDashoffset=0;
-            range.value=0;
+            pie.style.strokeDashoffset=100;
+            range.value=100;
             display.textContent=100;
         }
 
         function byg(){
+            display.textContent=range.value;
             pie.style.transition="0s";
-            pie.style.strokeDashoffset=range.value*-1;
-            display.textContent=parseInt(range.value)+100;
+            pie.style.strokeDashoffset=range.value;
         }
     </script>
 </body></html>
