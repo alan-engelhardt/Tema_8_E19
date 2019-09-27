@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>T</title>
+    <style>
+        svg {
+            font-family: sans-serif;
+            width: 400px;
+            fill: none;
+            border-radius: 50%;
+            background-color: #eee;
+            transform: rotate(-90deg);
+        }
+
+        circle {
+            stroke: orange;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 90;
+            stroke-width: 380;
+        }
+
+        text {
+            fill: white;
+            font-size: 4em;
+            transform-origin: center;
+            transform: rotate(90deg);
+        }
+
+        button {
+            display: block;
+            margin: 1em;
+        }
+
+        p {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <svg viewBox="0 0 400 400">
+        <circle id="pie" pathLength="100" cx="200" cy="200" r="190" />
+        <text id="info" x="200" y="200">10%</text>
+    </svg>
+    <button id="tegnKnap">100%</button>
+    <input id="range" type="range" min="-100" max="0" value="-90">
+    <p><span id="display">10</span>%</p>
+    <script>
+        tegnKnap.addEventListener("click", tegn);
+        range.addEventListener("input", byg);
+
+        function tegn() {
+            let i = parseInt(range.value) + 100;
+            pie.style.transition = 1-(i/100) + "s";
+            pie.style.strokeDashoffset = 0;
+            let intv = setInterval(function() {
+                display.textContent = i;
+                info.textContent = i + "%";
+                range.value = i-100;
+                i++
+                if (i > 100) {
+                    clearInterval(intv);
+                }
+            }, 10)
+        }
+
+        function byg() {
+            pie.style.transition = "0s";
+            pie.style.strokeDashoffset = range.value * -1;
+            display.textContent = parseInt(range.value) + 100;
+            info.textContent = parseInt(range.value) + 100 + "%";
+        }
+    </script>
+</body></html>

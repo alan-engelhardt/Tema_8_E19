@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>draw pie</title>
+
+    <style>
+        .piechart {
+            background: #ddd;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transform: rotate(-90deg);
+
+            fill: none;
+            stroke-width: 200;
+            stroke-dasharray: 10 632;
+            transition: all 1s ease;
+        }
+
+        .pie1 {
+            stroke: green;
+        }
+
+        .pie2 {
+            stroke: red;
+        }
+
+        .pie3 {
+            stroke: blue;
+        }
+
+        .pie4 {
+            stroke: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <svg class="piechart" viewbox="0 0 200 200">
+            <circle r="100" cx="100" cy="100" class="pie1" />
+            <circle r="100" cx="100" cy="100" class="pie2" />
+            <circle r="100" cx="100" cy="100" class="pie3" />
+            <circle r="100" cx="100" cy="100" class="pie4" />
+        </svg>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+        let valueArray = [];
+        let offsetArray = [0];
+        let omkreds = 200 * Math.PI;
+        let ialt = 0;
+        let faktor = 0;
+        let myData;
+
+        async function hentJson() {
+            let myJson = await fetch("pie.json");
+            myData = await myJson.json();
+            //console.log(myData);
+            lavArray();
+        }
+
+        function lavArray() {
+            myData.forEach(data => {
+                offsetArray.push(data.value + offsetArray[offsetArray.length - 1]);
+                valueArray.push(data.value);
+            })
+            ialt = valueArray.reduce((val, num) => val + num);
+            console.log(valueArray);
+            console.log(ialt);
+            console.log(omkreds / ialt);
+            faktor = omkreds / ialt;
+            animer();
+        }
+
+
+        function animer() {
+            document.querySelectorAll(".piechart circle").forEach((pie, i) => {
+                pie.style.strokeDasharray = valueArray[i] * faktor + " " + omkreds;
+                pie.style.strokeDashoffset = -offsetArray[i] * faktor;
+                pie.setAttribute("data-value", valueArray[i]);
+                pie.setAttribute("data-procent", valueArray[i]/ialt*100);
+                // console.log(pie);
+            });
+
+
+        }
+        document.querySelector(".piechart").addEventListener("mouseover", e => {
+            let value = e.target.dataset.value;
+            let procent = e.target.dataset.procent;
+            if (value) {
+                console.log(value, procent +" % af " + ialt);
+            }
+        });
+    </script>
+
+
+</body></html>
