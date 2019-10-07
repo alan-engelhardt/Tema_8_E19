@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>T</title>
+    <style>
+        #diagram {
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 400px;
+            stroke-width: 100;
+            fill: none;
+            font-size: .5em;
+            transform: rotate(-90deg);
+        }
+
+        #stykke1 {
+            stroke: rgba(256, 0, 0, .8);
+            stroke-dasharray: 1 314;
+            stroke-dashoffset: 0;
+            transition: all 1s;
+        }
+
+        #stykke2 {
+            stroke: rgba(0, 250, 0, .8);
+            stroke-dasharray: 1 314;
+            stroke-dashoffset: 0;
+            transition: all 1s;
+        }
+
+        #stykke3 {
+            stroke: rgba(0, 0, 250, .8);
+            stroke-dasharray: 1 314;
+            stroke-dashoffset: 0;
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="diagram" viewbox="0 0 100 100">
+        <circle id="stykke1" cx="50" cy="50" r="50" />
+        <circle id="stykke2" cx="50" cy="50" r="50" />
+        <circle id="stykke3" cx="50" cy="50" r="50" />
+    </svg>
+    <script>
+        const value = [50, 25, 25];
+        let offset = [0, 50, 75]
+        const omkreds = Math.PI*100;
+        let total = 0;
+        value.forEach(v => total += v)
+        const forhold = omkreds/total;
+
+        console.log(omkreds, total, forhold)
+
+        document.querySelectorAll("#diagram circle").forEach((c, i)=>{
+            c.style.strokeDasharray=value[i]*forhold + " " + omkreds;
+            c.style.strokeDashoffset=-offset[i]*forhold;
+        })
+    </script>
+</body></html>
+
+
+
+
+
+

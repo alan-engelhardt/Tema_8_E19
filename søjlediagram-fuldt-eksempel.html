@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #svgcontainer {
+            width: 50%;
+            min-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #666;
+            background-image: url(mur.jpg);
+            background-size: cover;
+        }
+
+        #bars line {
+            stroke: #ca1;
+            stroke-width: 15;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            transition: all 1s ease;
+            z-index: 10;
+        }
+
+        .st0 {
+            stroke: #fff;
+            stroke-width: .5;
+        }
+
+        .graf-text {
+            font-family: monospace, sans-serif;
+            fill: #fff;
+            font-size: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="svgcontainer">
+        <svg viewBox="-25 -20 240 140">
+            <g id="bgr">
+                <line class="st0" x1="0" y1="0" x2="0" y2="100" />
+                <line class="st0" x1="0" y1="0" x2="200" y2="0" />
+                <line class="st0" x1="0" y1="20" x2="200" y2="20" />
+                <line class="st0" x1="0" y1="40" x2="200" y2="40" />
+                <line class="st0" x1="0" y1="60" x2="200" y2="60" />
+                <line class="st0" x1="0" y1="80" x2="200" y2="80" />
+                <line class="st0" x1="0" y1="100" x2="200" y2="100" />
+
+                <text x="-16" y="100" class="graf-text st2">0</text>
+                <text x="-16" y="80" class="graf-text st2">20</text>
+                <text x="-16" y="60" class="graf-text st2">40</text>
+                <text x="-16" y="40" class="graf-text st2">60</text>
+                <text x="-16" y="20" class="graf-text st2">80</text>
+                <text x="-16" y="0" class="graf-text st2">100</text>
+
+                <g id="text">
+                    <text x="20" y="110" class="graf-text st2">mdr</text>
+                    <text x="52" y="110" class="graf-text st2">mdr</text>
+                    <text x="83" y="110" class="graf-text st2">mdr</text>
+                    <text x="112" y="110" class="graf-text st2">mdr</text>
+                    <text x="142" y="110" class="graf-text st2">mdr</text>
+                    <text x="172" y="110" class="graf-text st2">mdr</text>
+                </g>
+            </g>
+            <g id="bars">
+                <line x1="30" y1="100" x2="30" y2="30" />
+                <line x1="60" y1="100" x2="60" y2="60" />
+                <line x1="90" y1="100" x2="90" y2="80" />
+                <line x1="120" y1="100" x2="120" y2="40" />
+                <line x1="150" y1="100" x2="150" y2="40" />
+                <line x1="180" y1="100" x2="180" y2="40" />
+                <!-- If you do not specify the stroke
+             color the line will not be visible -->
+            </g>
+        </svg>
+    </div>
+    <script>
+        //document.querySelector("svg").addEventListener("mouseover", animate);
+
+        document.addEventListener("DOMContentLoaded", loadJson);
+
+        async function loadJson() {
+            const myJson = await fetch("graphData.json");
+            values = await myJson.json();
+            animate(values);
+        }
+
+        function animate(values) {
+            document.querySelectorAll("#bars line").forEach((e, i) => {
+                e.style.strokeDashoffset = 0;
+                e.setAttribute("y2", 100 - values[i].number);
+                e.setAttribute("data-value", values[i].number);
+            })
+
+            document.querySelectorAll("#text text").forEach((e, i) => {
+                e.textContent = values[i].month;
+            })
+        }
+
+        document.querySelector("#bars").addEventListener("mouseover", e => {
+            let valgt = e.target.dataset.value;
+            if (valgt) {
+                console.log(valgt);
+            }
+        });
+    </script>
+</body></html>

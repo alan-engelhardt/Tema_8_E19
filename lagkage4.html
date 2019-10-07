@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>L4</title>
+
+    <style>
+        #diagram {
+            border-radius: 50%;
+            fill: none;
+            stroke-width: 100;
+            width: 90vh;
+            transform: rotate(-90deg);
+        }
+
+        #snit1 {
+            stroke: orange;
+            stroke-dasharray: 1 314;
+            transition: 1s;
+        }
+
+        #snit2 {
+            stroke: rgba(0, 256, 0, .5);
+            stroke-dasharray: 1 314;
+            transition: 1s;
+        }
+
+        #snit3 {
+            stroke: rgba(0, 0, 256, .5);
+            stroke-dasharray: 1 314;
+            transition: 1s;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <svg id="diagram" viewbox="0 0 100 100">
+        <circle id="snit1" cx="50" cy="50" r="50" />
+        <circle id="snit2" cx="50" cy="50" r="50" />
+        <circle id="snit3" cx="50" cy="50" r="50" />
+    </svg>
+
+    <script>
+        const values = [50, 25, 75];
+        const offset = [0];
+        const omkreds = Math.PI * 100;
+        let total = 0;
+        values.forEach(v => total += v);
+        const faktor = omkreds / total;
+
+        console.log(omkreds, total, faktor);
+
+        window.addEventListener("load", animer)
+
+        function animer() {
+            document.querySelectorAll("svg circle").forEach((c, i) => {
+                c.style.strokeDasharray = values[i] * faktor + " " + omkreds;
+                offset.push(values[i] + offset[i]);
+                c.style.strokeDashoffset = -offset[i] * faktor;
+                c.setAttribute("data-value", values[i])
+                c.setAttribute("data-procent", values[i] / total * 100)
+                c.addEventListener("mouseover", e => vis(e));
+            });
+        }
+
+        function vis(e) {
+            console.log("Værdi: " + e.target.dataset.value)
+            console.log("Procent: " + e.target.dataset.procent)
+        }
+    </script>
+
+</body></html>

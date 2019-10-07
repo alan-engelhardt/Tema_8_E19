@@ -5,46 +5,44 @@
     <title>T</title>
     <style>
         svg {
+            font-family: sans-serif;
             width: 400px;
             fill: none;
             border-radius: 50%;
-            background-color: orange;
+            background-color: #eee;
             transform: rotate(-90deg);
         }
 
         circle {
-            stroke: #eee;
+            stroke: orange;
             stroke-dasharray: 100;
-            stroke-dashoffset: 10;
+            stroke-dashoffset: 90;
             stroke-width: 380;
         }
 
-        section{
-            width: 400px;
-            padding: 2em 0;
-            text-align: center;
+        text {
+            fill: white;
+            font-size: 4em;
+            transform-origin: center;
+            transform: rotate(90deg);
         }
 
-        p {
-            display: inline;
-        }
     </style>
 </head>
 
 <body>
     <svg viewBox="0 0 400 400">
         <circle id="pie" pathLength="100" cx="200" cy="200" r="190" />
+        <text id="info" x="200" y="200">10%</text>
     </svg>
-    <section>
-        <input id="range" type="range" min="0" max="100" value="10">
-        <p><span id="display">10</span>%</p>
-    </section>
+    <input id="range" type="range" min="-100" max="0" value="-90">
     <script>
         range.addEventListener("input", byg);
 
         function byg() {
-            display.textContent = range.value;
-            pie.style.strokeDashoffset = range.value;
+            pie.style.transition = "0s";
+            pie.style.strokeDashoffset = range.value * -1;
+            info.textContent = parseInt(range.value) + 100 + "%";
         }
     </script>
 </body></html>

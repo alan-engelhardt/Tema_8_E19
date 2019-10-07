@@ -1,0 +1,18 @@
+[
+    {
+        "farve": "Grøn",
+        "antal": 200
+  },
+    {
+        "farve": "Rød",
+        "antal": 500
+  },
+    {
+        "farve": "Blå",
+        "antal": 300
+  },
+    {
+        "farve": "Orange",
+        "antal": 400
+  }
+]

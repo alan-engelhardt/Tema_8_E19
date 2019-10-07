@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>draw pie</title>
+
+    <style>
+        .piechart {
+            background: #ddd;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            transform: rotate(-90deg);
+            fill: none;
+            stroke-width: 200;
+            stroke-dasharray: 10 632;
+        }
+
+        .pie1 {
+            stroke: green;
+            transition: 1s;
+        }
+
+        .pie2 {
+            stroke: red;
+            transition: 1s;
+        }
+
+        .pie3 {
+            stroke: blue;
+            transition: 1s;
+        }
+
+        .pie4 {
+            stroke: orange;
+            transition: 1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <svg class="piechart" viewbox="0 0 200 200">
+            <circle r="100" cx="100" cy="100" class="pie1" />
+            <circle r="100" cx="100" cy="100" class="pie2" />
+            <circle r="100" cx="100" cy="100" class="pie3" />
+            <circle r="100" cx="100" cy="100" class="pie4" />
+        </svg>
+    </div>
+    <p id="info"></p>
+    <script>
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+        let antalArray = [];
+        let offsetArray = [0];
+        let omkreds = 200 * Math.PI;
+        let total = 0;
+        let faktor = 0;
+//        let myData;
+
+        async function hentJson() {
+            let myJson = await fetch("pie2.json");
+            myData = await myJson.json();
+            lavArray(myData);
+        }
+
+/*        function hentJson() {
+            fetch("pie2.json").then(e=>e.json()).then(json=>lavArray(json));
+        }*/
+
+        function lavArray(myData) {
+            myData.forEach(data => {
+                // læg den aktuelle værdi til den sidste værdi i offsetArray og gem summen i offsetArray
+                offsetArray.push(data.antal + offsetArray[offsetArray.length - 1]);
+                console.log(data.antal + " oa: " + offsetArray[offsetArray.length - 1])
+                antalArray.push(data.antal);
+                total += data.antal
+            })
+            // Læg alle værdierne i antalArray sammen
+            total = antalArray.reduce((val, num) => val + num);
+            // Udregn forholdet (faktoren) imellem lagkagens omkreds og summen af værdierne
+            faktor = omkreds / total;
+            console.log(total, omkreds, faktor);
+            animer();
+        }
+
+        function animer() {
+            document.querySelectorAll(".piechart circle").forEach((pie, i) => {
+                // Gang de aktuelle værdier med faktor, for at fylde hele lagkagen ud proportionalt
+                pie.style.strokeDasharray = antalArray[i] * faktor + " " + omkreds;
+                //console.log(antalArray[i], offsetArray[i])
+                pie.style.strokeDashoffset = -offsetArray[i] * faktor;
+                pie.setAttribute("data-antal", antalArray[i]);
+                // Beregn den aktuelle værdi i procent af det samlede antal
+                pie.setAttribute("data-procent", Math.round(antalArray[i] / total * 100));
+            });
+        }
+
+        document.querySelector(".piechart").addEventListener("mouseover", e => {
+            let antal = e.target.dataset.antal;
+            let procent = e.target.dataset.procent;
+            info.textContent = antal + " enheder = " + procent + "% af " + total;
+        });
+    </script>
+
+</body></html>

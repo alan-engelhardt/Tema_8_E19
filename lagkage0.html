@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>T</title>
+    <style>
+        .container {
+            width: 50vw;
+            min-width: 400px;
+            border: 1px solid;
+            margin: 1em;
+        }
+
+        #lagkage {
+            border-radius: 50%;
+            background-color: antiquewhite;
+            transform: rotate(-90deg);
+            stroke-width: 100;
+            fill: none;
+        }
+
+        #udsnit1 {
+            stroke: red;
+            stroke-dasharray: 25 314;
+        }
+
+        #udsnit2 {
+            stroke: rgba(0, 0, 255, .5);
+            stroke-dasharray: 75 314;
+            stroke-dashoffset: -25;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <svg id="lagkage" viewbox="0 0 100 100">
+            <circle id="udsnit1" cx="50" cy="50" r="50" />
+            <circle id="udsnit2" cx="50" cy="50" r="50" />
+        </svg>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
