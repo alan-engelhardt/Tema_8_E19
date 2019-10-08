@@ -1,18 +1,22 @@
 [
     {
-        "farve": "Grøn",
+        "farve": "green",
         "antal": 200
   },
     {
-        "farve": "Rød",
+        "farve": "red",
         "antal": 500
   },
     {
-        "farve": "Blå",
+        "farve": "blue",
         "antal": 300
   },
     {
-        "farve": "Orange",
+        "farve": "orange",
         "antal": 400
+  },
+    {
+        "farve": "grey",
+        "antal": 100
   }
 ]

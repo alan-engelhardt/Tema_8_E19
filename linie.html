@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <title>T</title>
     <style>
-        svg{
-            border: 1px solid;
+        #nr1{
             stroke: red;
-            stroke-width: 1;
-            stroke-dasharray: 20;
+            stroke-width: 20;
+            stroke-dasharray: 50;
             stroke-dashoffset: 0;
+        }
+        #nr2{
+            stroke: green;
+            stroke-width: 20;
+            stroke-dasharray: 20 200;
+            stroke-dashoffset: -50;
         }
     </style>
 </head>
 <body>
-    <svg viewbox="-5 0 110 10">
-        <line x1="0" y1="5" x2="100" y2="5" />
+    <svg viewbox="0 0 100 10">
+        <line id="nr1" x1="0" y1="5" x2="100" y2="5" />
+        <line id="nr2" x1="0" y1="5" x2="100" y2="5" />
     </svg>
 </body>
 </html>
