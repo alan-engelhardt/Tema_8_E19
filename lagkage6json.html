@@ -49,16 +49,16 @@
                 cirkel.setAttribute("cy", 50);
                 cirkel.setAttribute("r", 20);
                 cirkel.style.stroke = e.farve;
-                cirkel.style.transition = "1s";
+                cirkel.style.transition = i + "s linear";
                 cirkel.style.strokeDasharray = 1 + " " + omkreds;
                 cirkel.style.strokeDashoffset = 1;
                 cirkel.setAttribute("data-antal", e.antal);
                 cirkel.setAttribute("data-procent", e.antal / total * 100);
-                cirkel.addEventListener("mouseover", skriv);
+                cirkel.addEventListener("mouseover", udskriv);
                 diagram.appendChild(cirkel);
             });
             // document.querySelector("button").addEventListener("click", ()=>animer(data));
-            setTimeout(()=>animer(data), 500);
+            setTimeout(()=>animer(data), 300);
             //animer(data);
         }
 
@@ -69,7 +69,7 @@
             });
         }
 
-        function skriv(event) {
+        function udskriv(event) {
             console.log(event.target.dataset.antal);
             console.log(event.target.dataset.procent);
         }

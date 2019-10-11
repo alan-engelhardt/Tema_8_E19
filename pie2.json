@@ -1,22 +1,22 @@
 [
     {
-        "farve": "green",
+        "farve": "rgba(0, 256, 0, .8)",
         "antal": 200
   },
     {
-        "farve": "red",
+        "farve": "rgba(0, 0, 256, .8)",
         "antal": 500
   },
     {
-        "farve": "blue",
+        "farve": "rgba(256, 0, 0, .8)",
         "antal": 300
   },
     {
-        "farve": "orange",
+        "farve": "rgba(256, 256, 0, .8)",
         "antal": 400
   },
     {
-        "farve": "grey",
+        "farve": "rgba(256, 0, 256, .8)",
         "antal": 100
   }
 ]

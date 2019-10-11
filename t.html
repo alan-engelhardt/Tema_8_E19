@@ -5,41 +5,93 @@
     <meta charset="UTF-8">
     <title>T</title>
     <style>
+        #container {
+            max-width: 90vh;
+            font-family: monospace;
+        }
+
         #diagram {
-            border: solid 1px;
-            border-radius: 50%;
+            border: 1px solid;
             fill: none;
-            stroke-width: 100;
-            width: 90vh;
+            stroke-width: 50;
             transform: rotate(-90deg);
-        }
-        #snit1{
-            stroke: orange;
-            stroke-dasharray: 50 320;
-        }
-        #snit2{
-            stroke: rgba(0, 256, 0, .5);
-            stroke-dasharray: 70 320;
-            stroke-dashoffset: -50;
-        }
-        #snit3{
-            stroke: rgba(0, 0, 256, .5);
-            stroke-dasharray: 150 320;
-            stroke-dashoffset: -120;
+            transition: 1s;
         }
     </style>
 </head>
 
 <body>
-    <svg id="diagram" viewbox="0 0 100 100">
-        <circle id="snit1" cx="50" cy="50" r="50" />
-        <circle id="snit2" cx="50" cy="50" r="50" />
-        <circle id="snit3" cx="50" cy="50" r="50" />
-    </svg>
-
+    <div id="container">
+        <svg id="diagram" viewbox="0 0 100 100"></svg>
+    </div>
+    <button>Animer</button>
     <script>
+        let offset = [0];
+        let total = 0;
+        const omkreds = Math.PI * 50;
+        let faktor = 1;
 
+        window.addEventListener("load", hentJson);
+
+        function hentJson() {
+            fetch("pie2.json").then(e => e.json()).then(data => vis(data));
+        }
+
+        function vis(data) {
+            console.log(data)
+            data.forEach(e => total += e.antal);
+            faktor = omkreds / total;
+            data.forEach((e, i) => {
+                const cirkel = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+                offset.push(e.antal + offset[i]);
+                cirkel.setAttribute("cx", 50);
+                cirkel.setAttribute("cy", 50);
+                cirkel.setAttribute("r", 25);
+                cirkel.style.stroke = e.farve;
+                cirkel.style.transition = "1s";
+                cirkel.style.strokeDasharray = 1 + " " + omkreds;
+                cirkel.style.strokeDashoffset = 1;
+                cirkel.setAttribute("data-antal", e.antal);
+                cirkel.setAttribute("data-procent", e.antal / total * 100);
+                cirkel.addEventListener("mouseover", skriv);
+                diagram.appendChild(cirkel);
+            });
+            // document.querySelector("button").addEventListener("click", ()=>animer(data));
+            setTimeout(()=>animer(data), 500);
+            //animer(data);
+        }
+
+        function animer(data) {
+            document.querySelectorAll("#diagram circle").forEach((cirkel, i) => {
+                cirkel.style.strokeDasharray = data[i].antal * faktor + " " + omkreds;
+                cirkel.style.strokeDashoffset = -offset[i] * faktor;
+            });
+        }
+
+        function skriv(event) {
+            console.log(event.target.dataset.antal);
+            console.log(event.target.dataset.procent);
+        }
     </script>
-</body>
+</body></html>
 
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
